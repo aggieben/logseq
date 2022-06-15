@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "dotnet tool restore",
     "start": "dotnet fable watch src --run webpack-dev-server",
-    "build": "dotnet fable src && npx webpack"
+    "build": "pushd src && dotnet paket install && popd && dotnet fable src && npx webpack"
   },
   "devDependencies": {
     "webpack": "^5.73.0",

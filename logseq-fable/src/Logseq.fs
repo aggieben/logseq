@@ -18,9 +18,10 @@ type UI =
 
 type Logseq =
     abstract member ready: callback:(unit->unit) -> JS.Promise<obj>
-    
+
     abstract member UI: UI with get
 
-let logseq : Logseq = import "ILSPluginUser" "@logseq/libs"
+[<Emit("window['logseq']")>]
+let logseq : Logseq = jsNative
 
 
