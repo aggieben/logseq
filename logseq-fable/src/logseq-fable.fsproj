@@ -6,5 +6,8 @@
   <ItemGroup>
     <Compile Include="Logseq.fs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="*.fsproj; **\*.fs; **\*.fsi" PackagePath="fable\" />
+  </ItemGroup> 
   <Import Project=".paket\Paket.Restore.targets" />
 </Project>

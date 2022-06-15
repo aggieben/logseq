@@ -11,9 +11,16 @@ type UIMsgOptions = {
 type UIMessageStatus = Success | Warning | Error | Other of string
 type UIMsgKey = string
 
-type UI() =
+type UI =
+    abstract member showMsg: content:string * ?status:UIMessageStatus * ?opts:UIMsgOptions -> JS.Promise<UIMsgKey>
+    abstract member closeMsg: key:UIMsgKey -> unit
 
-    // import? emit?
-    static member showMsg(content:string, ?status:UIMessageStatus, ?opts:UIMsgOptions) : JS.Promise<UIMsgKey> = jsNative
+
+type Logseq =
+    abstract member ready: callback:(unit->unit) -> JS.Promise<obj>
+    
+    abstract member UI: UI with get
+
+let logseq : Logseq = import "ILSPluginUser" "@logseq/libs"
 
 

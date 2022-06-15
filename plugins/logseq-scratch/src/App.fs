@@ -1,9 +1,13 @@
 module App
 
 open Fable.Core
-open Fable.Core.JsInterop
+open Logseq
 
-[<Import("ILSPluginUser", "@logseq/libs")>]
-let Logseq : Logseq.ILSPluginUser = jsNative
+let main() =
+    logseq.UI.showMsg("test") |> ignore
 
-Logseq.UI.showMsg "test" null null
+let consoleError o =
+    JS.console.error o
+    o
+
+logseq.ready(main).catch(consoleError) |> ignore

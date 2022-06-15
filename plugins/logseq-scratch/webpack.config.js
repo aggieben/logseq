@@ -8,13 +8,7 @@ module.exports = {
     mode: "development",
     entry: "./src/App.fs.js",
     output: {
-        path: path.join(__dirname, "public"),
+        path: path.join(__dirname, "."),
         filename: "bundle.js",
-    },
-    devServer: {
-        static: path.join(__dirname, "public"),
-        port: 8080,
-    },
-    module: {
     }
 }
