@@ -1,0 +1,18 @@
+{
+  "name": "logseq-bible-study",
+  "version": "0.0.1",
+  "main": "bundle.js",
+  "logseq": {
+    "title": "Bible Study"
+  },
+  "private": true,
+  "scripts": {
+    "postinstall": "dotnet tool restore && pushd src && dotnet paket install && popd",
+    "start": "dotnet fable watch src --run webpack-dev-server",
+    "build": "dotnet fable src && yarn webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
