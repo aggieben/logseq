@@ -1,0 +1,23 @@
+{
+  "name": "logseq-scratch",
+  "version": "1.0.0",
+  "main": "dist/bundle.js",
+  "logseq": {
+    "title": "Scratch"
+  },
+  "private": true,
+  "scripts": {
+    "postinstall": "dotnet tool restore",
+    "start": "dotnet fable watch src --run webpack-dev-server",
+    "build": "dotnet fable src && webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  },
+
+  "dependencies": {
+    "@logseq/libs": "^0.0.6"
+  }
+}
