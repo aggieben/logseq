@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "bundle.js",
   "logseq": {
-    "title": "Bible Study"
+    "title": "Bible Study",
+    "id": "_ulhucyqit"
   },
   "private": true,
   "scripts": {
