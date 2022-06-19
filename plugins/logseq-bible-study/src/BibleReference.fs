@@ -1,0 +1,117 @@
+module BibleReference
+
+type BookId =
+    | Genesis
+    | Exodus
+    | Leviticus
+    | Numbers
+    | Deuteronomy
+    | Joshua
+    | Judges
+    | Ruth
+    | Samuel1
+    | Samuel2
+    | Kings1
+    | Kings2
+    | Chronicles1
+    | Chronicles2
+    | Ezra
+    | Nehemiah
+    | Esther
+    | Job
+    | Psalms
+    | Proverbs
+    | Ecclesiastes
+    | SongOfSolomon
+    | Isaiah
+    | Jeremiah
+    | Lamentations
+    | Ezekiel
+    | Daniel
+    | Hosea
+    | Joel
+    | Amos
+    | Obadiah
+    | Jonah
+    | Micah
+    | Nahum
+    | Habakkuk
+    | Zephaniah
+    | Haggai
+    | Zechariah
+    | Malachi
+    | Matthew
+    | Mark
+    | Luke
+    | John
+    | Acts
+    | Romans
+    | Corinthians1
+    | Corinthians2
+    | Galatians
+    | Ephesians
+    | Philippians
+    | Colossians
+    | Thessalonians1
+    | Thessalonians2
+    | Timothy1
+    | Timothy2
+    | Titus
+    | Philemon
+    | Hebrews
+    | James
+    | Peter1
+    | Peter2
+    | John1
+    | John2
+    | John3
+    | Jude
+    | Revelation
+
+type BookGenre =
+    | Narrative
+    | Law
+    | Poetry
+    | Wisdom
+    | Prophecy
+    | Gospel
+    | Epistle
+    | Apocalypse
+
+type Provenance =
+    | SelfIdentified
+    | Historic
+    | Tradition
+    | Speculative
+    | Unknown
+
+type Author = {
+    Name: string option
+    Provenance: Provenance
+}
+
+type BookDate = {
+    Year: int
+    Provenance: Provenance
+}
+
+type Book = {
+    Id: BookId
+    Name: string
+    VerseMap: Map<int,int>
+    Genres: BookGenre[] // first entry considered primary genre
+    Author: Author
+    Date: BookDate
+}
+
+let bibleMap : Map<BookId, Book> option = None
+
+// TODO: pass in bible data as a parameter so as to have pure functions here
+let initialize(bibleData:obj) =
+    // use whatever bible data is passed to parse and construct the value for bibleMap
+    ()
+
+(*
+    let parse format =
+        // return something useful
+*)

@@ -8,36 +8,29 @@ open Logseq.Settings
 
 let registerSettings() =
     [|
-        // { key = "bible-api"
-        //   ``type`` = SettingSchemaType.Enum
-        //   ``default`` = (!^ [|"Biblia.com"|]) |> Some
-        //   title = "Bible API"
-        //   description = "API used to retrieve bible passages"
-        //   inputAs = None
-        //   enumChoices = [|"Biblia.com";"bible.org"|] |> Some
-        //   enumPicker = SettingSchemaEnumPickerType.Select |> Some }
-
-        // { key = "bible-translation"
-        //   ``type`` = SettingSchemaType.Enum
-        //   ``default`` = (!^ [|"ESV"|]) |> Some
-        //   title = "Bible Translation"
-        //   description = "Translation of scripture to request"
-        //   inputAs = None
-        //   enumChoices = [|"ESV";"KVJ";"LSB";"NIV"|] |> Some
-        //   enumPicker = SettingSchemaEnumPickerType.Select |> Some }
-        { key = "test"
-          ``type`` = SettingSchemaType.String
-          ``default`` = (!^ [|String.Empty|]) |> Some
-          title = "Test"
-          description = "Test Description"
+        { key = "bible-api"
+          ``type`` = SettingSchemaType.Enum
+          ``default`` = (!^ [|"Biblia.com"|]) |> Some
+          title = "Bible API"
+          description = "API used to retrieve bible passages"
           inputAs = None
-          enumChoices = None
-          enumPicker = None }
+          enumChoices = [|"biblia.com";"bible.org"|] |> Some
+          enumPicker = SettingSchemaEnumPickerType.Select |> Some }
+
+        { key = "bible-translation"
+          ``type`` = SettingSchemaType.Enum
+          ``default`` = (!^ [|"ESV"|]) |> Some
+          title = "Bible Translation"
+          description = "Translation of scripture to request"
+          inputAs = None
+          enumChoices = [|"ESV";"KVJ";"LSB";"NIV"|] |> Some
+          enumPicker = SettingSchemaEnumPickerType.Select |> Some }
     |] |> logseq.useSettingsSchema
 
 let main() =
     registerSettings() |> ignore
 
+
 logseq.ready(main)
-      .catch(fun o -> JS.console.error o; o) 
+      .catch(fun o -> JS.console.error o; o)
 |> ignore
