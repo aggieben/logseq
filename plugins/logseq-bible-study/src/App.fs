@@ -5,8 +5,6 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Logseq
 open Logseq.Settings
-open Node.Api
-open Node.Buffer
 
 let registerSettings() =
     [|
