@@ -1,5 +1,7 @@
 module BibleReference
 
+open FSharp.Reflection
+
 type BookId =
     | Genesis
     | Exodus
@@ -68,8 +70,7 @@ type BookId =
     | Jude
     | Revelation
 
-
-let abbreviateBookIdOsis = function
+let private abbreviateBookIdOsis = function
     | Genesis -> "Gen"
     | Exodus -> "Exod"
     | Leviticus -> "Lev"
@@ -137,10 +138,33 @@ let abbreviateBookIdOsis = function
     | Jude -> "Jude"
     | Revelation -> "Rev"
 
+let private _bookIdReverseMap = 
+    [ "Genesis", Genesis; "Exodus", Exodus; "Leviticus", Leviticus; "Numbers", Numbers; "Deuteronomy", Deuteronomy; "Joshua", Joshua; "Judges", Judges
+      "Ruth", Ruth; "1 Samuel", Samuel1; "2 Samuel", Samuel2; "1 Kings", Kings1; "2 Kings", Kings2; "1 Chronicles", Chronicles1; "2 Chronicles", Chronicles2
+      "Ezra", Ezra; "Nehemiah", Nehemiah; "Esther", Esther; "Job", Job; "Psalms", Psalms; "Proverbs", Proverbs; "Ecclesiastes", Ecclesiastes
+      "Song of Solomon", SongOfSolomon; "Isaiah", Isaiah; "Jeremiah", Jeremiah; "Lamentations", Lamentations; "Ezekiel", Ezekiel; "Daniel", Daniel
+      "Hosea", Hosea; "Joel", Joel; "Amos", Amos; "Obadiah", Obadiah; "Jonah", Jonah; "Micah", Micah; "Nahum", Nahum; "Habakkuk", Habakkuk
+      "Zephaniah", Zephaniah; "Haggai", Haggai; "Zechariah", Zechariah; "Malachi", Malachi; "Matthew", Matthew; "Mark", Mark
+      "Luke", Luke; "John", John; "Acts", Acts; "Romans", Romans; "1 Corinthians", Corinthians1; "2 Corinthians", Corinthians2
+      "Galatians", Galatians; "Ephesians", Ephesians; "Philippians", Philippians; "Colossians", Colossians; 
+      "1 Thessalonians", Thessalonians1; "2 Thessalonians", Thessalonians2; "1 Timothy", Timothy1; "2 Timothy", Timothy2; "Titus", Titus
+      "Philemon", Philemon; "Hebrews", Hebrews; "James", James; "1 Peter", Peter1; "2 Peter", Peter2; "1 John", John1; "2 John", John2
+      "3 John", John3; "Jude", Jude; "Revelation", Revelation ]
 
-    // with member this.ToString(?format:string) =
-    //     match defaultArg format "osis" with
-    //     | "osis" ->
+type BookId
+    with 
+        member this.ToString(?format:string) =
+            match defaultArg format "o" with
+            | "o" -> abbreviateBookIdOsis this
+            | _ -> nameof this
+
+        static member TryParse(bookTag:string) =
+            _bookIdReverseMap
+            |> List.choose (fun (name,id) -> 
+                                if name.StartsWith(bookTag, System.StringComparison.InvariantCultureIgnoreCase)
+                                then Some id
+                                else None)
+            |> List.tryExactlyOne
 
 type BookGenre =
     | Narrative
@@ -314,10 +338,16 @@ let bibleMap : Map<BookId, Book> =
     ] 
     |> Map.ofList
 
-// TODO: pass in bible data as a parameter so as to have pure functions here
-let initialize(bibleData:obj) =
-    // use whatever bible data is passed to parse and construct the value for bibleMap
-    ()
+open FSharp.Text.RegexProvider
+
+type private SingleBookReferenceRx = Regex< @"(?'BookTag'[A-Za-z]+)(?'Chapter'[0-9]+)(?:[.:](?'StartVerse'[0-9]+)(?:-(?'EndVerse'[0-9]+))?)?" >
+let parse reference =
+    let rxMatch = SingleBookReferenceRx().TypedMatch(reference)
+    let bookIdOpt = BookId.TryParse(rxMatch.BookTag.Value)
+    match bookIdOpt with
+    | None -> None
+    | Some bookId ->
+        Some ()
 
 (*
     let parse format =

@@ -1,4 +1,4 @@
 Fable.Core
 FSharp.Core
 logseq-fable
-Fable.Node
+FSharp.Text.RegexProvider

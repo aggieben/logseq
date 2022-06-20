@@ -6,6 +6,8 @@ NUGET
       Fable.Core (>= 3.1.2)
       FSharp.Core (>= 5.0)
     FSharp.Core (6.0.5)
+    FSharp.Text.RegexProvider (2.1)
+      FSharp.Core (>= 4.3.4)
   remote: ../../../logseq-fable/src/bin/Debug
     logseq-fable (1.0.0)
       Fable.Core (3.7.1)
