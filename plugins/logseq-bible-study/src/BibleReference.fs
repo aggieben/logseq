@@ -68,6 +68,52 @@ type BookId =
     | Jude
     | Revelation
 
+
+    // let abbreviateBookIdOsis = function
+    //     | Genesis -> "Gen"
+    //     | Exodus -> "Exod"
+    //     | Deuteronomy -> "Deut"
+    //     | Joshua -> "Josh"
+    //     | Judges -> "Judg"
+    //     | Samuel1 -> "1Sam"
+    //     | Samuel2 -> "2Sam"
+    //     | Kings1 -> "1Kgs"
+    //     | Kings2 -> "2Kgs"
+    //     | Chronicles1 -> "1Chr"
+    //     | Chronicles2 -> "2Chr"
+    //     | Esther -> "Esth"
+    //     | Psalms -> "Ps"
+    //     | Proverbs -> "Prov"
+    //     | Ecclesiastes -> "Eccl"
+    //     | SongOfSolomon -> "Song"
+    //     | Ezekiel -> "Ezek"
+    //     | Obadiah -> "Obad"
+    //     | Jonah -> "Jonah"
+    //     | Zephaniah -> "Zeph"
+    //     | Zechariah -> "Zech"
+    //     | Matthew -> "Matt"
+    //     | Corinthians1 -> "1Cor"
+    //     | Corinthians2 -> "2Cor"
+    //     | Philippians -> "Phil"
+    //     | Thessalonians1 -> "1Thess"
+    //     | Thessalonians2 -> "2Thess"
+    //     | Timothy1 -> "1Tim"
+    //     | Timothy2 -> "2Tim"
+    //     | Titus -> "Titus"
+    //     | Philemon -> "Phlm"
+    //     | Peter1 -> "1Pet"
+    //     | Peter2 -> "2Pet"
+    //     | John1 -> "1John"
+    //     | John2 -> "2John"
+    //     | John3 -> "3John"
+
+
+    // with member this.ToString(?format:string) =
+    //     match defaultArg format "osis" with
+    //     | "osis" ->
+
+
+
 type BookGenre =
     | Narrative
     | Law

@@ -6,3 +6,4 @@ nuget Fable.Core
 
 source ../../../logseq-fable/src/bin/Debug
 nuget logseq-fable
+nuget Fable.Node

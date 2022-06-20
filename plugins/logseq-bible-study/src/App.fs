@@ -5,6 +5,8 @@ open Fable.Core
 open Fable.Core.JsInterop
 open Logseq
 open Logseq.Settings
+open Node.Api
+open Node.Buffer
 
 let registerSettings() =
     [|
@@ -27,8 +29,13 @@ let registerSettings() =
           enumPicker = SettingSchemaEnumPickerType.Select |> Some }
     |] |> logseq.useSettingsSchema
 
+let dumpUmdJson() =
+  let umdText = fs.readFileSync("umd.jsonc")
+  printfn "%A" umdText
+
 let main() =
     registerSettings() |> ignore
+    dumpUmdJson() |> ignore
 
 
 logseq.ready(main)
